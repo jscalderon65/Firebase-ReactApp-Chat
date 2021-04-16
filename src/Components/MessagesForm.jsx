@@ -8,6 +8,7 @@ const MessagesForm = ({ onSubmitHandler, message, handleInputChange }) => {
         <input
           type="text"
           name="message"
+          autoComplete="off"
           className="form-control"
           value={message}
           onChange={handleInputChange}
@@ -15,7 +16,7 @@ const MessagesForm = ({ onSubmitHandler, message, handleInputChange }) => {
           placeholder="Escribe algo..."
           required
         />
-        {message ? (
+        {message.trim() ? (
           <Button
             style={{
               display: "flex",

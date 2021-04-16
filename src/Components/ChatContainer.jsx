@@ -6,11 +6,11 @@ import {
   ChatContainerStyles,
   ChatBoxStyles,
 } from "../Styles/ChatContainerStyles";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import MessagesForm from "./MessagesForm";
 import TransmitterMessage from "./TransmitterMessage";
 import ReceiverMessage from "./ReceiverMessage";
-import { FireTwoTone } from "@ant-design/icons";
+import { FireTwoTone, GithubOutlined } from "@ant-design/icons";
 
 const ChatContainer = ({ user, firebase }) => {
   const [spinIcon, setSpin] = useState(false);
@@ -32,7 +32,8 @@ const ChatContainer = ({ user, firebase }) => {
     );
   };
   return (
-    <div style={containerStyles}>
+    messages?
+    <div style={containerStyles} className="animate__animated animate__fadeIn">
       <div
         style={{
           display: "flex",
@@ -48,10 +49,16 @@ const ChatContainer = ({ user, firebase }) => {
           }}
           spin={spinIcon}
         />
+        <GithubOutlined    style={{ fontSize: "40px",color:"white" }}
+          onClick={() => {
+            window.open("https://github.com/jscalderon65/Firebase-ReactApp-Chat");
+          }}
+          spin={spinIcon}/>
         <Button type="primary" danger size="large" onClick={logout}>
           Salir
         </Button>
       </div>
+
       <div style={chatBoxStyles}>
         {messages &&
           messages.map((messageInfo) => {
@@ -72,7 +79,7 @@ const ChatContainer = ({ user, firebase }) => {
         message={message}
         handleInputChange={handleInputChange}
       />
-    </div>
+    </div>:<Spin size="large"/>
   );
 };
 export default ChatContainer;
